@@ -21,7 +21,7 @@
   "author": "Tomate0613",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doublekekse/tomate-loaders.git"
+    "url": "git+https://github.com/Tomate0613/tomate-loaders.git"
   },
   "bugs": {
     "url": "https://github.com/Tomate0613/tomate-loaders/issues"
@@ -37,7 +37,7 @@
     "@types/node": "^20.17.10",
     "jest": "^29.7.0",
     "minecraft-launcher-core": "^3.18.2",
-    "tomate-mods": "github:doublekekse/tomate-mods",
+    "tomate-mods": "github:Tomate0613/tomate-mods",
     "ts-jest": "^29.2.5"
   }
 }
