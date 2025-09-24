@@ -1,4 +1,3 @@
-import type { ModLoader as TomateModsModLoader } from 'tomate-mods';
 import type { ILauncherOptions } from 'minecraft-launcher-core';
 
 export type LaunchConfig = {
@@ -27,7 +26,17 @@ export type ModLoader = {
   /**
    * The loader config for the 'tomate-mods' package
    */
-  tomateModsModLoader: TomateModsModLoader;
+  tomateModsModLoader: ModLoaderPlatformInfo;
+};
+
+export type ModLoaderPlatformInfo = {
+  /**
+   * @deprecated
+   */
+  overrideMods: Record<string, string>;
+
+  modrinthCategories: string[];
+  curseforgeCategory: string;
 };
 
 export type VanillaLoader = Omit<

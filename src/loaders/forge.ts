@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import xml from 'xml2js';
 
-import type { ModLoader } from 'tomate-mods';
-import type { LaunchConfig } from '..';
+import type { LaunchConfig, ModLoaderPlatformInfo } from '..';
 import { InvalidVersionError } from '../errors';
 
 export const id = 'forge';
@@ -139,8 +138,8 @@ export async function listSupportedGameVersions() {
 /**
  * The loader config for the 'tomate-mods' package
  */
-export const tomateModsModLoader: ModLoader = {
+export const tomateModsModLoader = {
   overrideMods: {},
   modrinthCategories: ['forge'],
   curseforgeCategory: '1',
-};
+} satisfies ModLoaderPlatformInfo & Record<string, unknown>;

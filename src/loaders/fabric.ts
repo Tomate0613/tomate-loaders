@@ -2,8 +2,7 @@ import axios, { AxiosError } from 'axios';
 import fs from 'fs';
 import path from 'path';
 
-import type { ModLoader } from 'tomate-mods';
-import type { LaunchConfig } from '..';
+import type { LaunchConfig, ModLoaderPlatformInfo } from '..';
 import { InvalidVersionError } from '../errors';
 
 export const id = 'fabric';
@@ -112,8 +111,11 @@ export async function listSupportedGameVersions() {
 /**
  * The loader config for the 'tomate-mods' package
  */
-export const tomateModsModLoader: ModLoader = {
+export const tomateModsModLoader = {
+  /**
+   * @deprecated
+   */
   overrideMods: {},
   modrinthCategories: ['fabric'],
   curseforgeCategory: '4',
-};
+} satisfies ModLoaderPlatformInfo & Record<string, unknown>;

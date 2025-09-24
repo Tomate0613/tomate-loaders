@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import xml from 'xml2js';
 
-import type { ModLoader } from 'tomate-mods';
-import type { LaunchConfig } from '..';
+import type { LaunchConfig, ModLoaderPlatformInfo } from '..';
 import { InvalidVersionError } from '../errors';
 
 export const id = 'neoforge';
@@ -135,8 +134,11 @@ export async function listSupportedGameVersions() {
 /**
  * The loader config for the 'tomate-mods' package
  */
-export const tomateModsModLoader: ModLoader = {
+export const tomateModsModLoader = {
+  /**
+   * @deprecated
+   */
   overrideMods: {},
   modrinthCategories: ['neoforge'],
   curseforgeCategory: '6',
-};
+} satisfies ModLoaderPlatformInfo & Record<string, unknown>;
