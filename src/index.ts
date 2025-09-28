@@ -44,8 +44,16 @@ export type VanillaLoader = Omit<
   'tomateModsModLoader' | 'listLoaderVersions' | 'listAllLoaderVersions'
 >;
 
-export type LoaderId = 'quilt' | 'fabric' | 'forge' | 'neoforge' | 'vanilla';
-export type ModdedLoaderId = 'quilt' | 'fabric' | 'forge';
+export const loaderIds = [
+  'quilt',
+  'fabric',
+  'forge',
+  'neoforge',
+  'vanilla',
+] as const;
+
+export type LoaderId = (typeof loaderIds)[number];
+export type ModdedLoaderId = Exclude<LoaderId, 'vanilla'>;
 
 export * as fabric from './loaders/fabric';
 export * as quilt from './loaders/quilt';
