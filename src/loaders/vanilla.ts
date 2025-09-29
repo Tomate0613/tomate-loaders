@@ -49,3 +49,18 @@ export async function listSupportedGameVersions() {
     stable: version.type === 'release',
   }));
 }
+
+/**
+ * Returns all loader versions. Note that these might not be available for all game versions
+ * This returns `['vanilla']` on vanilla
+ */
+export async function listAllLoaderVersions() {
+  return ['vanilla'] satisfies ['vanilla'];
+}
+/**
+ * Returns all loader versions that are available for a given game version.
+ * This returns the same as listAllLoaderVersions on vanilla
+ */
+export async function listLoaderVersions(_gameVersion: string) {
+  return listAllLoaderVersions();
+}

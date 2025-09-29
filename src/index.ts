@@ -39,10 +39,7 @@ export type ModLoaderPlatformInfo = {
   curseforgeCategory: string;
 };
 
-export type VanillaLoader = Omit<
-  ModLoader,
-  'tomateModsModLoader' | 'listLoaderVersions' | 'listAllLoaderVersions'
->;
+export type VanillaLoader = Omit<ModLoader, 'tomateModsModLoader'>;
 
 export const loaderIds = [
   'quilt',
