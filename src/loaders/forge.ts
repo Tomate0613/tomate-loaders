@@ -94,10 +94,12 @@ export async function getMCLCLaunchConfig(config: LaunchConfig) {
     throw new InvalidVersionError(config.gameVersion);
   }
 
+  const custom = `forge-${config.gameVersion}-${config.loaderVersion}`;
+
   const versionPath = path.join(
     config.rootPath,
     'versions',
-    `forge-${config.gameVersion}-${config.loaderVersion}`,
+    custom,
     'forge.jar'
   );
 
@@ -109,7 +111,7 @@ export async function getMCLCLaunchConfig(config: LaunchConfig) {
     version: {
       number: config.gameVersion,
       type: 'release',
-      custom: `forge-${config.gameVersion}-${config.loaderVersion}`,
+      custom,
     },
     forge: versionPath,
   };

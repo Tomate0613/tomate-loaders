@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import fs from 'fs';
 import path from 'path';
 
-import type { LaunchConfig, ModLoaderPlatformInfo } from '..';
+import { vanilla, type LaunchConfig, type ModLoaderPlatformInfo } from '..';
 import { InvalidVersionError } from '../errors';
 
 export const id = 'fabric';
@@ -79,11 +79,13 @@ export async function getMCLCLaunchConfig(config: LaunchConfig) {
 
   const profile = await getProfile(config.gameVersion, config.loaderVersion);
 
+  const custom = `fabric-${config.gameVersion}-${config.loaderVersion}`;
+
   const versionPath = path.join(
     config.rootPath,
     'versions',
-    `fabric-${config.gameVersion}-${config.loaderVersion}`,
-    `fabric-${config.gameVersion}-${config.loaderVersion}.json`
+    custom,
+    `${custom}.json`
   );
 
   fs.mkdirSync(path.dirname(versionPath), { recursive: true });
@@ -94,7 +96,7 @@ export async function getMCLCLaunchConfig(config: LaunchConfig) {
     version: {
       number: config.gameVersion,
       type: 'release',
-      custom: `fabric-${config.gameVersion}-${config.loaderVersion}`,
+      custom,
     },
   };
 }
