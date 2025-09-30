@@ -40,7 +40,7 @@ export async function getVersion(gameVersion: string) {
     throw new InvalidVersionError(gameVersion);
   }
 
-  return (await axios.get(version.url)).data;
+  return version;
 }
 
 export async function downloadVersionFile(
