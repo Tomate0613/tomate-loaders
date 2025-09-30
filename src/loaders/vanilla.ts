@@ -1,5 +1,8 @@
 import axios from 'axios';
 import type { LaunchConfig } from '..';
+import path from 'node:path';
+import fs from 'node:fs';
+import { InvalidVersionError } from '../errors';
 
 export const id = 'vanilla';
 
@@ -24,6 +27,37 @@ export async function getVersionManifest() {
       'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'
     )
   ).data;
+}
+
+export async function getVersion(gameVersion: string) {
+  const manifest = await getVersionManifest();
+
+  const version = manifest.versions.find(
+    (version) => version.id === gameVersion
+  );
+
+  if (!version) {
+    throw new InvalidVersionError(gameVersion);
+  }
+
+  return (await axios.get(version.url)).data;
+}
+
+export async function downloadVersionFile(
+  config: LaunchConfig,
+  custom?: string
+) {
+  const versionPath = path.join(
+    config.rootPath,
+    'versions',
+    custom ?? config.gameVersion,
+    `${config.gameVersion}.json`
+  );
+
+  const version = await getVersion(config.gameVersion);
+
+  fs.mkdirSync(path.dirname(versionPath), { recursive: true });
+  fs.writeFileSync(versionPath, JSON.stringify(version));
 }
 
 /**
