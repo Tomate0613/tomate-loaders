@@ -4,6 +4,7 @@
   "description": "Provides metadata for minecraft modloaders",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsup-node",
     "prepare": "tsup-node"
   },
   "files": [
