@@ -4,7 +4,6 @@
   "description": "Provides metadata for minecraft modloaders",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --runInBand",
     "prepare": "tsup-node"
   },
   "files": [
@@ -33,11 +32,8 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.14",
     "@types/node": "^20.17.10",
-    "jest": "^29.7.0",
     "minecraft-launcher-core": "^3.18.2",
-    "ts-jest": "^29.2.5",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   }
